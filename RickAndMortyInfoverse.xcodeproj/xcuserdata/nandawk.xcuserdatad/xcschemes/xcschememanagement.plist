@@ -7,7 +7,30 @@
 		<key>RickAndMortyInfoverse.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>16B9C7A32C6776FA0074A356</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>16B9C7B52C6776FC0074A356</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>16B9C7BF2C6776FC0074A356</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>16B9C7F52C679CCF0074A356</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
