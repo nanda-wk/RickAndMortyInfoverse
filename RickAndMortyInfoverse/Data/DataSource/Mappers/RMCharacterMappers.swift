@@ -9,17 +9,15 @@ import Foundation
 
 extension RMCharacter {
     init(fromDTO dto: RMCharacterDTO) {
-//        var string = try! RMRequestConfiguration.episode.url.asURL().absoluteString
-//        string += "/"
         self.id = dto.id ?? 0
         self.name = dto.name ?? ""
         self.species = dto.species ?? ""
         self.type = dto.type ?? ""
         self.status = dto.status ?? .unknown
         self.gender = dto.gender ?? .unknown
-        self.origin = Location(name: dto.location?.name ?? "", url: dto.location?.url ?? "")
-        self.location = Location(name: dto.location?.name ?? "", url: dto.location?.url ?? "")
+        self.origin = Origin(name: dto.origin?.name ?? "", id: dto.origin?.url?.replacingOccurrences(of: String.replacePath(.location(1)), with: "") ?? "")
+        self.location = Location(name: dto.location?.name ?? "", id: dto.location?.url?.replacingOccurrences(of: String.replacePath(.location(1)), with: "") ?? "")
         self.image = dto.image ?? ""
-        self.episode = dto.episode.map{ $0.replacingOccurrences(of: String.replacePath(.episode), with: "") }
+        self.episode = dto.episode.map{ $0.replacingOccurrences(of: String.replacePath(.episode(1)), with: "") }
     }
 }

@@ -10,24 +10,43 @@ import SwiftUI
 
 struct CustomCapsule: View {
     
-    var image: String
+    let image: String
     let text: String
     let color: Color
+    let title: String
+    
+    private let customShape = RoundedCorner(radius: 20, corners: [.bottomLeft, .bottomRight])
     
     var body: some View {
-        HStack(spacing: 8) {
-            Image(image)
-                .resizable()
-                .frame(width: 24, height: 24)
-            Text(text.capitalized)
-                .font(.footnote)
+        VStack {
+            HStack(alignment: .top, spacing: 8) {
+                Image(image)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                Text(text.capitalized)
+                    .font(.headline)
+                    .lineLimit(2, reservesSpace: true)
+            }
+            .padding(.horizontal, 10)
+            .padding(.top, 10)
+            
+            Text(title.uppercased())
+                .font(.title3)
+                .fontWeight(.bold)
                 .foregroundStyle(color)
+                .frame(maxWidth: .infinity)
+                .background(Color.customGray.opacity(0.05))
+                .clipShape(customShape)
+            
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 5)
+        .frame(maxWidth: .infinity)
         .overlay(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: 20)
                 .stroke(color, lineWidth: 2)
         )
     }
+}
+
+#Preview {
+    CustomCapsule(image: "Dead", text: "Dead", color: Color.statusColor(.dead), title: "Status")
 }

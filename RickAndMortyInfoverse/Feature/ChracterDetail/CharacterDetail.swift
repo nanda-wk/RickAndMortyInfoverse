@@ -12,9 +12,9 @@ struct CharacterDetail: View {
     
     @Environment(\.dismiss) var dismiss
     
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    let columns = [GridItem(.flexible(), spacing: 20), GridItem(.flexible(), spacing: 20)]
     
-    var vm: CharacterDetailVM
+    @State var vm: CharacterDetailVM
     
     private var character: RMCharacter {
         vm.character
@@ -25,7 +25,7 @@ struct CharacterDetail: View {
     }
     
     init(character: RMCharacter) {
-        self.vm = CharacterDetailVM(character: character)
+        vm = CharacterDetailVM(character: character)
     }
     
     var body: some View {
@@ -46,39 +46,54 @@ struct CharacterDetail: View {
                             .padding(.top, 50)
                     }, alignment: .topLeading)
                 
-                Group {
+                VStack {
                     Text(character.name)
                         .font(.title)
                         .fontWeight(.medium)
                     
                     HStack(spacing: 20) {
-                        CustomCapsule(image: character.status.rawValue, text: character.status.rawValue, color: .statusColor(character.status))
+                        CustomCapsule(image: character.status.rawValue, text: character.status.rawValue, color: .statusColor(character.status), title: "Status")
                         
-                        CustomCapsule(image: "Dead", text: character.species, color: .customGray)
+                        CustomCapsule(image: character.gender.rawValue, text: character.gender.rawValue, color: .genderColor(character.gender), title: "Gender")
+                    }
+                    
+                    HStack(spacing: 20) {
+                        CustomCapsule(image: "type", text: character.type.isEmpty ? "unknown" : character.type, color: .customPurple, title: "Type")
                         
-                        CustomCapsule(image: character.gender.rawValue, text: RMCharacterGender.genderless.rawValue, color: .genderColor(character.gender))
+                        CustomCapsule(image: "species", text: character.species, color: .customBlue, title: "Species")
                     }
                     .padding(.bottom, 40)
                     
-                    
                     HStack(spacing: 20) {
-                        LocationCard(image: "planet", headerText: "Planet", location: character.origin.name)
+                        NavigationLink(value: character.origin) {
+                            LocationCard(image: "planet", headerText: "Planet", location: character.origin.name)
+                        }
                         
-                        LocationCard(image: "location", headerText: "Location", location: character.location.name)
+                        NavigationLink(value: character.location) {
+                            LocationCard(image: "location", headerText: "Location", location: character.location.name)
+                        }
                     }
                 }
                 .padding(.horizontal)
-                LazyVGrid(columns: columns) {
+                .padding(.bottom, 20)
+                
+                LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(vm.episodes) { episode in
-                        Text(episode.episode)
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .background(Color.customPrimary)
-                            .clipShape(RoundedRectangle(cornerRadius: 24))
+                        NavigationLink(value: episode) {
+                            EpisodeCardView(episode: episode)
+                        }
                     }
                 }
+                .padding(.horizontal, 20)
             }
+            .padding(.bottom, 20)
             .navigationBarBackButtonHidden()
+            .navigationDestination(for: Location.self) { origin in
+                Text("Origin: \(origin.id)")
+            }
+            .navigationDestination(for: RMEpisode.self) { episode in
+                Text("Episode: \(episode.id)")
+            }
         }
         .ignoresSafeArea()
     }
@@ -88,8 +103,8 @@ struct CharacterDetail: View {
     CharacterDetail(character: RMCharacter.dummyCharacterDead)
 }
 
-#Preview("Character Grid") {
-    Characters()
-}
+//#Preview("Character Grid") {
+//    Characters()
+//}
 
 

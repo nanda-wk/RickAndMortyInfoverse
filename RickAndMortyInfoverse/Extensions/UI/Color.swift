@@ -33,18 +33,6 @@ extension Color {
         )
     }
     
-//    static var male: Color {
-//        Color(hex: "1070FF")
-//    }
-//    
-//    static var female: Color {
-//        Color(hex: "FF7596")
-//    }
-//    
-//    static var genderLess: Color {
-//        Color(hex: "3CB371")
-//    }
-    
     static var customPrimary: Color {
         Color(hex: "11B0C8")
     }
@@ -63,6 +51,14 @@ extension Color {
     
     static var customGray: Color {
         Color(hex: "313234")
+    }
+    
+    static var customBlue: Color {
+        Color(hex: "#2F4BFF")
+    }
+    
+    static var customPurple: Color {
+        Color(hex: "#ff79c6")
     }
     
     static func statusColor(_ status: RMCharacterStatus) -> Color {

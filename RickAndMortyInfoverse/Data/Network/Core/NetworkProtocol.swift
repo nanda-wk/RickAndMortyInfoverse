@@ -9,7 +9,7 @@ import Alamofire
 import Foundation
 
 protocol NetworkProtocol {
-
+    
     func performRequest<T: Decodable>(
         _ configuration: RequestConfiguration,
         for type: T.Type
@@ -17,7 +17,7 @@ protocol NetworkProtocol {
 }
 
 extension NetworkProtocol {
-
+    
     func request<T: Decodable>(
         session: Session,
         configuration: RequestConfiguration,
@@ -31,6 +31,7 @@ extension NetworkProtocol {
             headers: configuration.headers,
             interceptor: configuration.interceptor
         )
+        .validate(statusCode: 200..<300)
         .serializingDecodable(T.self)
         .value
     }

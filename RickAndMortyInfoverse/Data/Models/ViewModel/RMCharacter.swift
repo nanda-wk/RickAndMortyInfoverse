@@ -8,18 +8,21 @@
 import Foundation
 
 // MARK: - RMCharacter
-struct RMCharacter: Codable, Identifiable {
+struct RMCharacter: Codable, Identifiable, Hashable {
     let id: Int
     let name, species, type: String
     let status: RMCharacterStatus
     let gender: RMCharacterGender
-    let origin, location: Location
+    let origin: Origin
+    let location: Location
     let image: String
     let episode: [String]
 }
 
-struct Location: Codable {
-    let name, url: String
+typealias Origin = Location
+
+struct Location: Codable, Hashable {
+    let name, id: String
 }
 
 
@@ -31,12 +34,12 @@ extension RMCharacter {
         type: "",
         status: .alive,
         gender: .male,
-        origin: Location(name: "Earth (C-137)", url: "https://rickandmortyapi.com/api/location/1"),
-        location: Location(name: "Citadel of Ricks", url: "https://rickandmortyapi.com/api/location/3"),
+        origin: Location(name: "Earth (C-137)", id: "1"),
+        location: Location(name: "Citadel of Ricks", id: "3"),
         image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
         episode: [
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2"
+            "1",
+            "2"
         ]
     )
     
@@ -47,18 +50,18 @@ extension RMCharacter {
         type: "",
         status: .dead,
         gender: .genderless,
-        origin: Location(name: "Earth (C-137)", url: "https://rickandmortyapi.com/api/location/1"),
-        location: Location(name: "Citadel of Ricks", url: "https://rickandmortyapi.com/api/location/3"),
+        origin: Location(name: "Earth (C-137)", id: "1"),
+        location: Location(name: "Citadel of Ricks", id: "3"),
         image: "https://rickandmortyapi.com/api/character/avatar/8.jpeg",
         episode: [
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2",
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2",
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2",
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2"
+            "1",
+            "2",
+            "11",
+            "23",
+            "12",
+            "22",
+            "4",
+            "6"
         ]
     )
 }

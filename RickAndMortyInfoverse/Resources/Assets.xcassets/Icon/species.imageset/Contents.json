@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "location.svg",
+      "filename" : "dna.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "location 1.svg",
+      "filename" : "dna 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "location 2.svg",
+      "filename" : "dna 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -44,6 +44,7 @@ struct RMCharacterCard: View {
                     Text(character.name)
                         .font(.subheadline)
                         .lineLimit(2, reservesSpace: true)
+                        .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }

@@ -11,8 +11,8 @@ class RMCharacterRepository {
     
     private let dataSource = RMRemoteDataSource()
     
-    func getAllCharacters() async -> [RMCharacter] {
-        let characters = await dataSource.getAllCharacters()
+    func getAllCharacters(page: Int) async -> [RMCharacter] {
+        let characters = await dataSource.getAllCharacters(page: page)
         return characters
     }
     

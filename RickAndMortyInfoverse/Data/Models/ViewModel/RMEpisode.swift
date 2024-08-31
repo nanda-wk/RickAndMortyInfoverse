@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - RMEpisode
-struct RMEpisode: Codable, Identifiable {
+struct RMEpisode: Codable, Identifiable, Hashable {
     let id: Int
     let name, airDate, episode: String
     let characters: [String]

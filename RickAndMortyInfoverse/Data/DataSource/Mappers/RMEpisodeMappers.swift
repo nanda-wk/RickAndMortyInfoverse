@@ -13,6 +13,6 @@ extension RMEpisode {
         self.name = dto.name ?? ""
         self.airDate = dto.airDate ?? ""
         self.episode = dto.episode ?? ""
-        self.characters = dto.characters.map{ $0.replacingOccurrences(of: String.replacePath(.character), with: "") }
+        self.characters = dto.characters.map{ $0.replacingOccurrences(of: String.replacePath(.character(1)), with: "") }
     }
 }

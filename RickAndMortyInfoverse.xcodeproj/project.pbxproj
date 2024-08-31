@@ -55,6 +55,7 @@
 		16B9C8EB2C68D8B50074A356 /* CharactersVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B9C8EA2C68D8B50074A356 /* CharactersVM.swift */; };
 		16BBD6B32C69EAB1004FB639 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 16BBD6B22C69EAB1004FB639 /* Kingfisher */; };
 		16BBD6B52C69FD96004FB639 /* RMEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBD6B42C69FD96004FB639 /* RMEndpoint.swift */; };
+		16EF8E1C2C831EFC00978AE9 /* EpisodeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF8E1B2C831EFC00978AE9 /* EpisodeCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		16B9C8E72C68D0120074A356 /* RMLocationMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationMappers.swift; sourceTree = "<group>"; };
 		16B9C8EA2C68D8B50074A356 /* CharactersVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersVM.swift; sourceTree = "<group>"; };
 		16BBD6B42C69FD96004FB639 /* RMEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEndpoint.swift; sourceTree = "<group>"; };
+		16EF8E1B2C831EFC00978AE9 /* EpisodeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			children = (
 				1669579C2C73110300CFDD75 /* LocationCard.swift */,
 				1669579E2C73113E00CFDD75 /* CustomCapsule.swift */,
+				16EF8E1B2C831EFC00978AE9 /* EpisodeCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				16B9C8EB2C68D8B50074A356 /* CharactersVM.swift in Sources */,
 				16B9C8D32C68B3350074A356 /* RMCharacterMappers.swift in Sources */,
 				16B9C8092C679DA90074A356 /* NetworkProtocol.swift in Sources */,
+				16EF8E1C2C831EFC00978AE9 /* EpisodeCardView.swift in Sources */,
 				16B9C8D02C688DFC0074A356 /* RMCharacterRepository.swift in Sources */,
 				16B9C8C12C6876350074A356 /* Encodable.swift in Sources */,
 				16B9C8B32C67E18C0074A356 /* RMCharacterCard.swift in Sources */,

@@ -10,15 +10,15 @@ import Foundation
 
 enum RMRequestConfiguration: RequestConfiguration {
     
-    case character
+    case character(Int)
     case singleCharacter(Int)
     case multipleCharacter([String])
     case filterCharacter(Encodable)
-    case episode
+    case episode(Int)
     case singleEpisode(Int)
     case multipleEpisode([String])
     case filterEpisode(Encodable)
-    case location
+    case location(Int)
     case singleLocation(Int)
     case multipleLocation([String])
     case filterLocation(Encodable)
@@ -53,12 +53,23 @@ enum RMRequestConfiguration: RequestConfiguration {
         .get
     }
     
+    var parameters: Parameters? {
+        switch self {
+            case .character(let page), .episode(let page), .location(let page):
+                return ["page": page]
+            case .filterCharacter(let request), .filterEpisode(let request), .filterLocation(let request):
+                return request.toDict()
+            default:
+                return nil
+        }
+    }
+    
     var encoding: ParameterEncoding {
         switch self {
-            case .filterCharacter, .filterEpisode, .filterLocation:
-                URLEncoding.queryString
+            case .character, .episode, .location, .filterCharacter, .filterEpisode, .filterLocation:
+                return URLEncoding.queryString
             default:
-                JSONEncoding.default
+                return JSONEncoding.default
         }
     }
 

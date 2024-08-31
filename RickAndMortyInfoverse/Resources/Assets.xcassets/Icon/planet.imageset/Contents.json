@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "planet 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "planet 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

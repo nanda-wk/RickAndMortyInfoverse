@@ -13,15 +13,18 @@ class CharactersVM {
     private(set) var characters = [RMCharacter]()
     private let repository = RMCharacterRepository()
     var isLoading = false
+    private var page = 0
     
     init() {
         loadCharacters()
     }
     
-    private func loadCharacters() {
+    func loadCharacters() {
         isLoading = true
+        page += 1
         Task {
-            self.characters = await repository.getAllCharacters()
+            let characters = await repository.getAllCharacters(page: page)
+            self.characters.append(contentsOf: characters)
         }
         isLoading = false
     }

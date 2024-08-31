@@ -20,11 +20,12 @@ struct LocationCard: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 40)
-                .offset(x: 0, y: -50)
+                .offset(x: 0, y: -55)
             
             VStack {
                 Text(headerText)
                     .font(.headline)
+                    .foregroundStyle(Color.customBlack)
                 
                 Spacer()
                 

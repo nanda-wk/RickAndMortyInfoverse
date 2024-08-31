@@ -11,10 +11,14 @@ class RMRemoteDataSource {
     
     private let network = Network.shared
     
-    func getAllCharacters() async -> [RMCharacter] {
-        
-        let response = try! await network.performRequest(RMRequestConfiguration.character, for: RMCharacterResponse.self)
-        let characters = response.results.map{ RMCharacter(fromDTO: $0) }
+    func getAllCharacters(page: Int = 1) async -> [RMCharacter] {
+        var characters = [RMCharacter]()
+        do {
+            let response = try await network.performRequest(RMRequestConfiguration.character(page), for: RMCharacterResponse.self)
+            characters = response.results.map{ RMCharacter(fromDTO: $0) }
+        } catch {
+            print(NetworkError.dataNotFound)
+        }
         return characters
     }
     

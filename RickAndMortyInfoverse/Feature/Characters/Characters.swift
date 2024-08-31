@@ -17,13 +17,22 @@ struct Characters: View {
                 LazyVGrid(columns: columns) {
                     if !vm.isLoading {
                         ForEach(vm.characters) { character in
-                            NavigationLink(destination: CharacterDetail(character: character)) {
+                            NavigationLink(value: character) {
                                 RMCharacterCard(character: character)
+                            }
+                            .onAppear {
+                                if character.id == vm.characters.last?.id {
+                                    vm.loadCharacters()
+                                }
                             }
                         }
                     } else {
                         ProgressView()
+                            .padding()
                     }
+                }
+                .navigationDestination(for: RMCharacter.self) { character in
+                    CharacterDetail(character: character)
                 }
                 .padding()
             }
