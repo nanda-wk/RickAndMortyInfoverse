@@ -18,27 +18,28 @@ struct Characters: View {
     
     var body: some View {
         ScrollView {
+            if vm.isLoading {
+                ProgressView()
+                    .padding()
+            }
+            
             LazyVGrid(columns: columns) {
-                if !vm.isLoading {
-                    ForEach(vm.characters) { character in
-                        NavigationLink(value: character) {
-                            RMCharacterCard(character: character)
-                        }
-                        .onAppear {
-                            if character.id == vm.characters.last?.id {
-                                vm.loadCharacters()
-                            }
+                
+                ForEach(vm.characters) { character in
+                    NavigationLink {
+                        CharacterDetail(character: character)
+                    } label: {
+                        RMCharacterCard(character: character)
+                    }
+                    .onAppear {
+                        if character.id == vm.characters.last?.id {
+                            vm.loadCharacters()
                         }
                     }
-                } else {
-                    ProgressView()
-                        .padding()
                 }
+                
             }
             .padding()
-            .navigationDestination(for: RMCharacter.self) { character in
-                CharacterDetail(character: character)
-            }
             .measure { newOffset in
                 withAnimation(.easeOut.speed(1.5)){
                     if newOffset > lastOffset || newOffset > 0 {

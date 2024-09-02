@@ -22,10 +22,18 @@ class RMRemoteDataSource {
         return characters
     }
     
+    func getMultipleCharacters(characters ids: [String]) async -> [RMCharacter] {
+        
+        let response = try! await network.performRequest(RMRequestConfiguration.multipleCharacter(ids), for: [RMCharacterDTO].self)
+        
+        let characters = response.map { RMCharacter(fromDTO: $0) }
+        return characters
+    }
+    
     func getMultipleEpisodes(episodes ids: [String]) async -> [RMEpisode] {
         
         let response = try! await network.performRequest(RMRequestConfiguration.multipleEpisode(ids), for: [RMEpisodeDTO].self)
-        let episodes = response.map{ RMEpisode(fromDTO: $0) }
+        let episodes = response.map { RMEpisode(fromDTO: $0) }
         return episodes
     }
 }

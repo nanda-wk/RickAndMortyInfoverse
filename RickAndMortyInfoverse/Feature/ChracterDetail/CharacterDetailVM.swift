@@ -19,7 +19,7 @@ class CharacterDetailVM {
     var showTitle = false
     
     private let repository = RMEpisodeRepository()
-
+    
     init(character: RMCharacter) {
         self.character = character
         getEpisodes()

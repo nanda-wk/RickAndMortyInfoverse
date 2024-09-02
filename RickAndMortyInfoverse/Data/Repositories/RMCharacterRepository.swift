@@ -16,4 +16,9 @@ class RMCharacterRepository {
         return characters
     }
     
+    func getMultipleCharacters(_ ids: [String]) async -> [RMCharacter] {
+        let characters = await dataSource.getMultipleCharacters(characters: ids)
+        return characters
+    }
+    
 }

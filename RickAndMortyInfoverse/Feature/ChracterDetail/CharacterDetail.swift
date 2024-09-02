@@ -63,11 +63,15 @@ struct CharacterDetail: View {
                     .padding(.bottom, 40)
                     
                     HStack(spacing: 20) {
-                        NavigationLink(value: character.origin) {
+                        NavigationLink {
+                            
+                        } label: {
                             LocationCard(image: "planet", headerText: "Planet", location: character.origin.name)
                         }
                         
-                        NavigationLink(value: character.location) {
+                        NavigationLink {
+                            
+                        } label: {
                             LocationCard(image: "location", headerText: "Location", location: character.location.name)
                         }
                     }
@@ -75,14 +79,24 @@ struct CharacterDetail: View {
                 .padding(.horizontal)
                 .padding(.bottom, 20)
                 
-                LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(vm.episodes) { episode in
-                        NavigationLink(value: episode) {
-                            EpisodeCardView(episode: episode)
+                if !vm.isLoading {
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(vm.episodes) { episode in
+                            NavigationLink {
+                                EpisodeDetail(episode: episode)
+                            } label: {
+                                EpisodeCardView(episode: episode)
+                            }
                         }
                     }
+                    .padding(.horizontal, 20)
+                } else {
+                    
+                    ProgressView()
+                        .padding()
+                    
                 }
-                .padding(.horizontal, 20)
+                
             }
             .padding(.bottom, 20)
         }
@@ -98,12 +112,6 @@ struct CharacterDetail: View {
                     BackButton()
                 }
             }
-        }
-        .navigationDestination(for: Location.self) { origin in
-            Text("Origin: \(origin.id)")
-        }
-        .navigationDestination(for: RMEpisode.self) { episode in
-            EpisodeDetail(episode: RMEpisode.dummyEpisode)
         }
     }
 }

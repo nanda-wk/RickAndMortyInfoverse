@@ -10,16 +10,27 @@ import Foundation
 @Observable
 class EpisodeDetailVM {
     
-    var episode: RMEpisode
+    private(set) var episode: RMEpisode
     
-    var characters: [RMCharacter] = []
+    private(set) var characters: [RMCharacter] = []
     
     var isLoading = false
     
     var showTitle = false
     
+    private let repository = RMCharacterRepository()
+    
     init(episode: RMEpisode) {
         self.episode = episode
+        getCharacters()
+    }
+    
+    private func getCharacters() {
+        isLoading = true
+        Task {
+            self.characters = await repository.getMultipleCharacters(episode.characters)
+        }
+        isLoading = false
     }
     
 }

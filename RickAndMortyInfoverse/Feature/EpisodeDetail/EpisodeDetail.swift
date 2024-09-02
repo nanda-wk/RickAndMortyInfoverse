@@ -34,17 +34,20 @@ struct EpisodeDetail: View {
                     .font(.title)
                     .fontWeight(.bold)
                 
-                LazyVGrid(columns: columns) {
-                    if !vm.isLoading {
-                        ForEach(1...12, id: \.self) { _ in
-                            NavigationLink(value: RMCharacter.dummyCharacterDead) {
-                                RMCharacterCard(character: RMCharacter.dummyCharacterDead)
+                if !vm.isLoading {
+                    LazyVGrid(columns: columns) {
+                        ForEach(vm.characters) { character in
+                            NavigationLink {
+                                CharacterDetail(character: character)
+                            } label: {
+                                RMCharacterCard(character: character)
                             }
                         }
-                    } else {
-                        ProgressView()
-                            .padding()
+                        
                     }
+                } else {
+                    ProgressView()
+                        .padding()
                 }
             }
             .padding(.horizontal)
@@ -60,9 +63,6 @@ struct EpisodeDetail: View {
                     BackButton()
                 }
             }
-        }
-        .navigationDestination(for: RMCharacter.self) { character in
-            CharacterDetail(character: character)
         }
     }
 }
@@ -81,7 +81,7 @@ struct CustomListItem: View {
             Text(name)
                 .multilineTextAlignment(.trailing)
         }
-        .font(.title2)
+        .font(.title3)
         .fontWeight(.bold)
         .padding()
         .frame(maxWidth: .infinity)

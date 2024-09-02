@@ -11,7 +11,7 @@ struct ContentView: View {
     
     @State private var selectedTab: Tab = .character
     @State private var isTabBarHidden = false
-
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
@@ -23,7 +23,7 @@ struct ContentView: View {
                     case .episode:
                         Episodes()
                 }
-    
+                
                 if !isTabBarHidden {
                     CustomTabBar(selectedTab: $selectedTab)
                 }

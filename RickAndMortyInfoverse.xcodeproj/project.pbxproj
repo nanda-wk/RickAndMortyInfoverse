@@ -217,15 +217,15 @@
 		16B9C7A62C6776FA0074A356 /* RickAndMortyInfoverse */ = {
 			isa = PBXGroup;
 			children = (
-				16EF8E232C84F64F00978AE9 /* Utils */,
+				16B9C7D32C6789730074A356 /* Application */,
 				166957A02C73116400CFDD75 /* CommonViews */,
-				16B9C8B12C67DE6E0074A356 /* Info.plist */,
-				16B9C89F2C67DBB40074A356 /* Resources */,
+				16B9C7D42C6799060074A356 /* Data */,
 				16B9C8992C67DB4D0074A356 /* Extensions */,
 				16B9C80C2C67A1290074A356 /* Feature */,
-				16B9C7D42C6799060074A356 /* Data */,
-				16B9C7D32C6789730074A356 /* Application */,
+				16EF8E232C84F64F00978AE9 /* Utils */,
 				16B9C7AF2C6776FC0074A356 /* Preview Content */,
+				16B9C89F2C67DBB40074A356 /* Resources */,
+				16B9C8B12C67DE6E0074A356 /* Info.plist */,
 			);
 			path = RickAndMortyInfoverse;
 			sourceTree = "<group>";
@@ -266,10 +266,10 @@
 		16B9C7D42C6799060074A356 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				16B9C7DE2C679AE90074A356 /* Models */,
 				16B9C7DB2C679AB40074A356 /* DataSource */,
-				16B9C7DA2C679A780074A356 /* Repositories */,
+				16B9C7DE2C679AE90074A356 /* Models */,
 				16B9C7D52C6799310074A356 /* Network */,
+				16B9C7DA2C679A780074A356 /* Repositories */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -288,9 +288,9 @@
 		16B9C7D62C679A1F0074A356 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				16B9C7DF2C679B0D0074A356 /* RequestConfiguration.swift */,
 				16B9C8062C679D740074A356 /* NetworkError.swift */,
 				16B9C8082C679DA90074A356 /* NetworkProtocol.swift */,
+				16B9C7DF2C679B0D0074A356 /* RequestConfiguration.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -305,8 +305,8 @@
 		16B9C7D92C679A4F0074A356 /* RequestConfigurations */ = {
 			isa = PBXGroup;
 			children = (
-				16B9C8BC2C686EF90074A356 /* RMRequestConfiguration.swift */,
 				16BBD6B42C69FD96004FB639 /* RMEndpoint.swift */,
+				16B9C8BC2C686EF90074A356 /* RMRequestConfiguration.swift */,
 			);
 			path = RequestConfigurations;
 			sourceTree = "<group>";
@@ -324,17 +324,9 @@
 			isa = PBXGroup;
 			children = (
 				16B9C8D12C68B30F0074A356 /* Mappers */,
-				16B9C7DC2C679ABC0074A356 /* Local */,
 				16B9C7DD2C679AC00074A356 /* Server */,
 			);
 			path = DataSource;
-			sourceTree = "<group>";
-		};
-		16B9C7DC2C679ABC0074A356 /* Local */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Local;
 			sourceTree = "<group>";
 		};
 		16B9C7DD2C679AC00074A356 /* Server */ = {
@@ -359,13 +351,13 @@
 		16B9C80C2C67A1290074A356 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				16EF8E292C85BE7D00978AE9 /* Locations */,
-				16EF8E262C85B4CF00978AE9 /* Navigation */,
+				16B9C8E92C68D8A30074A356 /* Characters */,
+				161DB5332C6BC6D500F965BF /* ChracterDetail */,
 				16EF8E1E2C84E56000978AE9 /* EpisodeDetail */,
 				16EF8E1D2C84E54A00978AE9 /* Episodes */,
-				161DB5332C6BC6D500F965BF /* ChracterDetail */,
+				16EF8E292C85BE7D00978AE9 /* Locations */,
+				16EF8E262C85B4CF00978AE9 /* Navigation */,
 				16B9C7A92C6776FA0074A356 /* ContentView.swift */,
-				16B9C8E92C68D8A30074A356 /* Characters */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -391,8 +383,8 @@
 			isa = PBXGroup;
 			children = (
 				16B9C89A2C67DB5E0074A356 /* Color.swift */,
-				16B9C89D2C67DB7F0074A356 /* Shape.swift */,
 				16B9C8AD2C67DD710074A356 /* CustomFont.swift */,
+				16B9C89D2C67DB7F0074A356 /* Shape.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -430,8 +422,8 @@
 			isa = PBXGroup;
 			children = (
 				16B9C8C72C687D880074A356 /* RMCharacterResponse.swift */,
-				16B9C8D52C68B5BA0074A356 /* RMLocationResponse.swift */,
 				16B9C8E12C68BA690074A356 /* RMEpisodeResponse.swift */,
+				16B9C8D52C68B5BA0074A356 /* RMLocationResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -447,8 +439,8 @@
 			isa = PBXGroup;
 			children = (
 				16B9C8CC2C6885DB0074A356 /* RMCharacter.swift */,
-				16B9C8E52C68CF710074A356 /* RMLocation.swift */,
 				161DB5392C6C7DEF00F965BF /* RMEpisode.swift */,
+				16B9C8E52C68CF710074A356 /* RMLocation.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -457,8 +449,8 @@
 			isa = PBXGroup;
 			children = (
 				16B9C8D22C68B3350074A356 /* RMCharacterMappers.swift */,
-				16B9C8E72C68D0120074A356 /* RMLocationMappers.swift */,
 				166957A62C731B2300CFDD75 /* RMEpisodeMappers.swift */,
+				16B9C8E72C68D0120074A356 /* RMLocationMappers.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -466,9 +458,9 @@
 		16B9C8DC2C68B9C70074A356 /* DataTypes */ = {
 			isa = PBXGroup;
 			children = (
+				16B9C8E32C68CC270074A356 /* InfoDTO.swift */,
 				16B9C8DD2C68B9DC0074A356 /* RMCharacterGender.swift */,
 				16B9C8DF2C68B9F30074A356 /* RMCharacterStatus.swift */,
-				16B9C8E32C68CC270074A356 /* InfoDTO.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -494,8 +486,8 @@
 		16EF8E1E2C84E56000978AE9 /* EpisodeDetail */ = {
 			isa = PBXGroup;
 			children = (
-				16EF8E1F2C84E56A00978AE9 /* EpisodeDetailVM.swift */,
 				16EF8E212C84E57600978AE9 /* EpisodeDetail.swift */,
+				16EF8E1F2C84E56A00978AE9 /* EpisodeDetailVM.swift */,
 			);
 			path = EpisodeDetail;
 			sourceTree = "<group>";
