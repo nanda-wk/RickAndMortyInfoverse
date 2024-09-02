@@ -64,7 +64,3 @@ struct RMCharacterCard: View {
 #Preview {
     RMCharacterCard(character: RMCharacter.dummyCharacterDead)
 }
-
-#Preview {
-    Characters()
-}

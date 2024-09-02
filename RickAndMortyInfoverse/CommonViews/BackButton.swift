@@ -17,7 +17,7 @@ struct BackButton: View {
             
             Image(systemName: "chevron.left")
                 .imageScale(.small)
-                .frame(width: 44, height: 44)
+                .frame(width: 50, height: 50)
                 .foregroundStyle(.black)
         }
     }

@@ -38,18 +38,16 @@ struct CharacterDetail: View {
                     .loadDiskFileSynchronously()
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .overlay(Button {
-                        dismiss()
-                    } label: {
-                        BackButton()
-                            .padding(.leading, 10)
-                            .padding(.top, 50)
-                    }, alignment: .topLeading)
                 
                 VStack {
                     Text(character.name)
                         .font(.title)
                         .fontWeight(.medium)
+                        .measure { value in
+                            withAnimation {
+                                vm.showTitle = value < 0
+                            }
+                        }
                     
                     HStack(spacing: 20) {
                         CustomCapsule(image: character.status.rawValue, text: character.status.rawValue, color: .statusColor(character.status), title: "Status")
@@ -87,24 +85,29 @@ struct CharacterDetail: View {
                 .padding(.horizontal, 20)
             }
             .padding(.bottom, 20)
-            .navigationBarBackButtonHidden()
-            .navigationDestination(for: Location.self) { origin in
-                Text("Origin: \(origin.id)")
-            }
-            .navigationDestination(for: RMEpisode.self) { episode in
-                Text("Episode: \(episode.id)")
-            }
         }
         .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
+        .navigationTitle(vm.showTitle ? character.name : "")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    BackButton()
+                }
+            }
+        }
+        .navigationDestination(for: Location.self) { origin in
+            Text("Origin: \(origin.id)")
+        }
+        .navigationDestination(for: RMEpisode.self) { episode in
+            EpisodeDetail(episode: RMEpisode.dummyEpisode)
+        }
     }
 }
 
 #Preview {
     CharacterDetail(character: RMCharacter.dummyCharacterDead)
 }
-
-//#Preview("Character Grid") {
-//    Characters()
-//}
-
-

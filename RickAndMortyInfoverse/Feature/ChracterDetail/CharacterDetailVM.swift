@@ -10,11 +10,13 @@ import Foundation
 @Observable
 class CharacterDetailVM {
     
-    var character: RMCharacter
+    private(set) var character: RMCharacter
     
-    var episodes: [RMEpisode] = []
+    private(set) var episodes: [RMEpisode] = []
     
     var isLoading = false
+    
+    var showTitle = false
     
     private let repository = RMEpisodeRepository()
 
