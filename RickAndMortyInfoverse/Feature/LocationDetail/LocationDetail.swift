@@ -1,36 +1,36 @@
 //
-//  EpisodeDetail.swift
+//  LocationDetail.swift
 //  RickAndMortyInfoverse
 //
-//  Created by Nanda WK on 2024-09-02.
+//  Created by Nanda WK on 2024-09-03.
 //
 
 import SwiftUI
 
-struct EpisodeDetail: View {
+struct LocationDetail: View {
     
     @Environment(\.dismiss) var dismiss
     
     let columns = [GridItem(.flexible(), spacing: 16), GridItem(.flexible())]
     
-    @State var vm: EpisodeDetailVM
+    @State var vm: LocationDetailVM
     
-    private var episode: RMEpisode {
-        vm.episode
+    private var location: RMLocation {
+        vm.location!
     }
     
-    init(episode: RMEpisode) {
-        vm = EpisodeDetailVM(episode: episode)
+    init(id: Int) {
+        vm = LocationDetailVM(id: id)
     }
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                CustomListItem(title: "Title", name: episode.name)
-                CustomListItem(title: "Air Date", name: episode.airDate)
-                CustomListItem(title: "Episode", name: episode.episode)
+                CustomListItem(title: "Location Name", name: location.name)
+                CustomListItem(title: "Type", name: location.type)
+                CustomListItem(title: "Dimension", name: location.dimension)
                 
-                Text("Characters")
+                Text("Residents")
                     .font(.title)
                     .fontWeight(.bold)
                 
@@ -53,7 +53,7 @@ struct EpisodeDetail: View {
             .padding(.horizontal)
         }
         .navigationBarBackButtonHidden(true)
-        .navigationTitle(episode.episode)
+        .navigationTitle(location.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -65,8 +65,9 @@ struct EpisodeDetail: View {
             }
         }
     }
+
 }
 
 #Preview {
-    EpisodeDetail(episode: RMEpisode.dummyEpisode)
+    LocationDetail(id: 1)
 }

@@ -29,10 +29,9 @@ class CharacterDetailVM {
         isLoading = true
         Task {
             self.episodes = await repository.getMultipleEpisodes(character.episode)
+            isLoading = false
         }
-        isLoading = false
     }
-    
     
 }
 

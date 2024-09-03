@@ -16,8 +16,6 @@ class EpisodeDetailVM {
     
     var isLoading = false
     
-    var showTitle = false
-    
     private let repository = RMCharacterRepository()
     
     init(episode: RMEpisode) {
@@ -29,8 +27,8 @@ class EpisodeDetailVM {
         isLoading = true
         Task {
             self.characters = await repository.getMultipleCharacters(episode.characters)
+            isLoading = false
         }
-        isLoading = false
     }
     
 }

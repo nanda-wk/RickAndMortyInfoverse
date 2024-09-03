@@ -23,13 +23,13 @@ struct LocationCard: View {
                 .offset(x: 0, y: -55)
             
             VStack {
-                Text(headerText)
+                Text(headerText.capitalized)
                     .font(.headline)
                     .foregroundStyle(Color.customBlack)
                 
                 Spacer()
                 
-                Text(location)
+                Text(location.capitalized)
                     .font(.subheadline)
                     .foregroundStyle(Color.customPrimary)
                 

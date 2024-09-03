@@ -25,7 +25,7 @@ class CharactersVM {
         Task {
             let characters = await repository.getAllCharacters(page: page)
             self.characters.append(contentsOf: characters)
+            isLoading = false
         }
-        isLoading = false
     }
 }

@@ -63,15 +63,25 @@ struct CharacterDetail: View {
                     .padding(.bottom, 40)
                     
                     HStack(spacing: 20) {
-                        NavigationLink {
-                            
-                        } label: {
+                        if !character.origin.id.isEmpty {
+                            NavigationLink {
+                                LocationDetail(id: Int(character.origin.id)!)
+                            } label: {
+                                LocationCard(image: "planet", headerText: "Planet", location: character.origin.name)
+                            }
+                        } else {
                             LocationCard(image: "planet", headerText: "Planet", location: character.origin.name)
                         }
                         
-                        NavigationLink {
-                            
-                        } label: {
+                        if !character.location.id.isEmpty {
+                            NavigationLink {
+                                if !character.location.id.isEmpty {
+                                    LocationDetail(id: Int(character.location.id)!)
+                                }
+                            } label: {
+                                LocationCard(image: "location", headerText: "Location", location: character.location.name)
+                            }
+                        } else {
                             LocationCard(image: "location", headerText: "Location", location: character.location.name)
                         }
                     }

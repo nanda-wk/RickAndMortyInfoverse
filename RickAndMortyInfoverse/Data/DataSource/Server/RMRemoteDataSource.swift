@@ -23,18 +23,36 @@ class RMRemoteDataSource {
     }
     
     func getMultipleCharacters(characters ids: [String]) async -> [RMCharacter] {
-        
-        let response = try! await network.performRequest(RMRequestConfiguration.multipleCharacter(ids), for: [RMCharacterDTO].self)
-        
-        let characters = response.map { RMCharacter(fromDTO: $0) }
+        var characters = [RMCharacter]()
+        do {
+            let response = try await network.performRequest(RMRequestConfiguration.multipleCharacter(ids), for: [RMCharacterDTO].self)
+            
+            characters = response.map { RMCharacter(fromDTO: $0) }
+        } catch {
+            print(NetworkError.dataNotFound)
+        }
         return characters
     }
     
     func getMultipleEpisodes(episodes ids: [String]) async -> [RMEpisode] {
-        
-        let response = try! await network.performRequest(RMRequestConfiguration.multipleEpisode(ids), for: [RMEpisodeDTO].self)
-        let episodes = response.map { RMEpisode(fromDTO: $0) }
+        var episodes = [RMEpisode]()
+        do {
+            let response = try await network.performRequest(RMRequestConfiguration.multipleEpisode(ids), for: [RMEpisodeDTO].self)
+            episodes = response.map { RMEpisode(fromDTO: $0) }
+        } catch {
+            print(NetworkError.dataNotFound)
+        }
         return episodes
+    }
+    
+    func getLocation(id: Int) async -> RMLocation? {
+        do {
+            let response = try await network.performRequest(RMRequestConfiguration.singleLocation(id), for: RMLocationDTO.self)
+            return RMLocation(fromDTO: response)
+        } catch {
+            print(NetworkError.dataNotFound)
+        }
+        return nil
     }
 }
 
