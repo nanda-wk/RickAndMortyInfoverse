@@ -8,9 +8,9 @@
 import Foundation
 
 extension String {
-    static func replacePath(_ config: RMRequestConfiguration) -> String {
-        var string = try! config.url.asURL().absoluteString
-        string += "/"
-        return string
-    }
+//    static func replacePath(_ config: RMRequestConfiguration) -> String {
+//        var string = try! config.url.asURL().absoluteString
+//        string += "/"
+//        return string
+//    }
 }

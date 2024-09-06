@@ -10,14 +10,9 @@ import SwiftUI
 struct EpisodeDetail: View {
     
     @Environment(\.dismiss) var dismiss
-    
-    let columns = [GridItem(.flexible(), spacing: 16), GridItem(.flexible())]
-    
     @State var vm: EpisodeDetailVM
     
-    private var episode: RMEpisode {
-        vm.episode
-    }
+    private let columns = [GridItem(.flexible(), spacing: 16), GridItem(.flexible())]
     
     init(episode: RMEpisode) {
         vm = EpisodeDetailVM(episode: episode)
@@ -25,16 +20,21 @@ struct EpisodeDetail: View {
     
     var body: some View {
         ScrollView {
+            
+            
             VStack(spacing: 20) {
-                CustomListItem(title: "Title", name: episode.name)
-                CustomListItem(title: "Air Date", name: episode.airDate)
-                CustomListItem(title: "Episode", name: episode.episode)
+                CustomListItem(title: "Title", name: vm.episode.name)
+                CustomListItem(title: "Air Date", name: vm.episode.airDate)
+                CustomListItem(title: "Episode", name: vm.episode.episode)
                 
                 Text("Characters")
                     .font(.title)
                     .fontWeight(.bold)
                 
-                if !vm.isLoading {
+                if vm.isLoading {
+                    ProgressView()
+                        .padding()
+                } else {
                     LazyVGrid(columns: columns) {
                         ForEach(vm.characters) { character in
                             NavigationLink {
@@ -45,15 +45,15 @@ struct EpisodeDetail: View {
                         }
                         
                     }
-                } else {
-                    ProgressView()
-                        .padding()
                 }
             }
             .padding(.horizontal)
+            .task {
+                await vm.loadData()
+            }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationTitle(episode.episode)
+        .navigationTitle(vm.episode.episode)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -68,5 +68,5 @@ struct EpisodeDetail: View {
 }
 
 #Preview {
-    EpisodeDetail(episode: RMEpisode.dummyEpisode)
+    EpisodeDetail(episode: RMEpisode.dummy)
 }

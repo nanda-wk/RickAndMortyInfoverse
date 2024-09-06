@@ -2,14 +2,13 @@
 //  NetworkError.swift
 //  RickAndMortyInfoverse
 //
-//  Created by Nanda WK on 2024-08-10.
+//  Created by Nanda WK on 2024-09-06.
 //
 
 import Foundation
 
 enum NetworkError: Error {
-    
-
-    case generic
     case dataNotFound
+    case decodeError
+    case requestError
 }

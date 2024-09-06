@@ -11,10 +11,10 @@ struct CustomListItem: View {
     let title, name: String
     var body: some View {
         HStack {
-            Text(title)
+            Text(title.capitalized)
                 .multilineTextAlignment(.leading)
             Spacer()
-            Text(name)
+            Text(name.isEmpty ? "N/A" : name.capitalized)
                 .multilineTextAlignment(.trailing)
         }
         .font(.title3)

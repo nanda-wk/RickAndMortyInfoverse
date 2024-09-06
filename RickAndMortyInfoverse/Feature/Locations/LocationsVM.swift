@@ -10,35 +10,29 @@ import Foundation
 @Observable
 class LocationsVM {
     
-    var dataTuple: [(location: RMLocation, residents: [URL])] = []
-    
-    private let repoLocation = RMLocationRepository()
-    private let repoCharacter = RMCharacterRepository()
+    private(set) var locations: [RMLocation] = []
+    private var apiInfo: APIInfo? = nil
     
     var isLoading = false
     
-    var page = 0
+    private let repository = RMRepository()
     
-    init() {
-        loadLocations()
+    func loadData() async {
+        isLoading = true
+        (apiInfo, locations) = await repository.fetchLocations(request: .listLocationsRequest)
+        isLoading = false
     }
     
-    func loadLocations() {
+    func loadMoreData() async {
         isLoading = true
-        page += 1
-        Task {
-            try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
-            let locations = await repoLocation.getAllLocations(page: page)
-            for location in locations {
-                var residents: [URL] = []
-                if !location.residents.isEmpty {
-                    residents = await repoCharacter.getResidentsAvatars(location.residents)
-                }
-                let tuple = (location, residents)
-                self.dataTuple.append(tuple)
-            }
+        guard let next = apiInfo?.next, let url = URL(string: next), let request = RMRequest(url: url) else {
             isLoading = false
+            return
         }
+        let (newApiInfo, newLocations) = await repository.fetchLocations(request: request)
+        apiInfo = newApiInfo
+        locations.append(contentsOf: newLocations)
+        isLoading = false
     }
 }
 

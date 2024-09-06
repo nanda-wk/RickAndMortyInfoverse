@@ -10,12 +10,5 @@ import XCTest
 
 final class RickAndMortyInfoverseTests: XCTestCase {
 
-    func test_get_all_character() {
-        let dataSource = RMRemoteDataSource()
-        let characters = Task {
-            await dataSource.getAllCharacters()
-        }
-        print(characters)
-    }
 
 }

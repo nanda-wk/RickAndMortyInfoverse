@@ -62,5 +62,5 @@ struct RMCharacterCard: View {
 }
 
 #Preview {
-    RMCharacterCard(character: RMCharacter.dummyCharacterDead)
+    RMCharacterCard(character: RMCharacter.dummy)
 }

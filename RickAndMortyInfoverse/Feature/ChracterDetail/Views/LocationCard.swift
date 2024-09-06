@@ -20,7 +20,7 @@ struct LocationCard: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 40)
-                .offset(x: 0, y: -55)
+                .offset(x: 0, y: -60)
             
             VStack {
                 Text(headerText.capitalized)
@@ -30,6 +30,7 @@ struct LocationCard: View {
                 Spacer()
                 
                 Text(location.capitalized)
+                    .lineLimit(2, reservesSpace: true)
                     .font(.subheadline)
                     .foregroundStyle(Color.customPrimary)
                 

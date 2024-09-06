@@ -9,37 +9,43 @@ import Foundation
 
 @Observable
 class LocationDetailVM {
-    
-    let id: Int
-    
-    private(set) var location: RMLocation?
-    
+        
+    private(set) var location: RMLocation
     private(set) var characters: [RMCharacter] = []
     
     var isLoading = false
     
-    private let repoLocation = RMLocationRepository()
-    private let repoCharacter = RMCharacterRepository()
+    private let repository = RMRepository()
     
-    init(id: Int) {
-        self.id = id
-        getLocation()
+    init(location: RMLocation) {
+        self.location = location
     }
     
-    private func getLocation() {
+    func loadData() async {
         isLoading = true
-        Task {
-            self.location = await repoLocation.getLocation(id: id)
-            self.getCharacters()
+        guard let url = URL(string: location.url), let request = RMRequest(url: url) else {
             isLoading = false
+            return
         }
+        let result = await repository.fetchLocationDetail(request: request)
+        guard let result = result else { return }
+        location = result
+        await fetchRelatedCharacters()
+        isLoading = false
     }
     
-    private func getCharacters() {
-        Task {
-            if let location = location {
-                self.characters = await repoCharacter.getMultipleCharacters(location.residents)
-            }
+    private func fetchRelatedCharacters() async {
+        guard !location.residents.isEmpty else { return }
+        var urlString = "\(Constants.baseUrl)/\(RMEndpoint.character.rawValue)/"
+        
+        let charactersArray = location.residents.map { $0.replacingOccurrences(of: urlString, with: "") }
+        
+        urlString += charactersArray.description
+        
+        guard let url = URL(string: urlString), let request = RMRequest(url: url) else {
+            return
         }
+        
+        characters = await repository.fetchRelatedCharacters(request: request)
     }
 }

@@ -2,7 +2,7 @@
 //  RMCharacterStatus.swift
 //  RickAndMortyInfoverse
 //
-//  Created by Nanda WK on 2024-08-11.
+//  Created by Nanda WK on 2024-09-06.
 //
 
 import Foundation

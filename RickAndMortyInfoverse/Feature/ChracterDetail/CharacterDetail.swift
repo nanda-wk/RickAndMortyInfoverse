@@ -11,18 +11,9 @@ import SwiftUI
 struct CharacterDetail: View {
     
     @Environment(\.dismiss) var dismiss
-    
-    let columns = [GridItem(.flexible(), spacing: 20), GridItem(.flexible(), spacing: 20)]
-    
     @State var vm: CharacterDetailVM
     
-    private var character: RMCharacter {
-        vm.character
-    }
-    
-    private var url: URL {
-        URL(string: character.image)!
-    }
+    private let columns = [GridItem(.flexible(), spacing: 20), GridItem(.flexible(), spacing: 20)]
     
     init(character: RMCharacter) {
         vm = CharacterDetailVM(character: character)
@@ -31,7 +22,7 @@ struct CharacterDetail: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                KFImage(url)
+                KFImage(URL(string: vm.character.image))
                     .placeholder {
                         Color.customGray.opacity(0.2)
                     }
@@ -40,7 +31,7 @@ struct CharacterDetail: View {
                     .aspectRatio(contentMode: .fill)
                 
                 VStack {
-                    Text(character.name)
+                    Text(vm.character.name)
                         .font(.title)
                         .fontWeight(.medium)
                         .measure { value in
@@ -50,46 +41,59 @@ struct CharacterDetail: View {
                         }
                     
                     HStack(spacing: 20) {
-                        CustomCapsule(image: character.status.rawValue, text: character.status.rawValue, color: .statusColor(character.status), title: "Status")
+                        CustomCapsule(image: vm.character.status.rawValue, text: vm.character.status.rawValue, color: .statusColor(vm.character.status), title: "Status")
                         
-                        CustomCapsule(image: character.gender.rawValue, text: character.gender.rawValue, color: .genderColor(character.gender), title: "Gender")
+                        CustomCapsule(image: vm.character.gender.rawValue, text: vm.character.gender.rawValue, color: .genderColor(vm.character.gender), title: "Gender")
                     }
                     
                     HStack(spacing: 20) {
-                        CustomCapsule(image: "type", text: character.type.isEmpty ? "unknown" : character.type, color: .customPurple, title: "Type")
+                        CustomCapsule(image: "type", text: vm.character.type.isEmpty ? "unknown" : vm.character.type, color: .customPurple, title: "Type")
                         
-                        CustomCapsule(image: "species", text: character.species, color: .customBlue, title: "Species")
+                        CustomCapsule(image: "species", text: vm.character.species, color: .customBlue, title: "Species")
                     }
                     .padding(.bottom, 40)
                     
                     HStack(spacing: 20) {
-                        if !character.origin.id.isEmpty {
+                        if !vm.character.origin.url.isEmpty, let origin = vm.origin {
                             NavigationLink {
-                                LocationDetail(id: Int(character.origin.id)!)
+                                LocationDetail(location: origin)
                             } label: {
-                                LocationCard(image: "planet", headerText: "Planet", location: character.origin.name)
+                                LocationCard(image: "planet", headerText: "Planet", location: vm.character.origin.name)
+                                    .task {
+                                        await vm.fetchRelatedOrigin()
+                                    }
                             }
                         } else {
-                            LocationCard(image: "planet", headerText: "Planet", location: character.origin.name)
+                            LocationCard(image: "planet", headerText: "Planet", location: vm.character.origin.name)
+                                .task {
+                                    await vm.fetchRelatedOrigin()
+                                }
                         }
                         
-                        if !character.location.id.isEmpty {
+                        if !vm.character.location.url.isEmpty, let location = vm.location {
                             NavigationLink {
-                                if !character.location.id.isEmpty {
-                                    LocationDetail(id: Int(character.location.id)!)
-                                }
+                                LocationDetail(location: location)
                             } label: {
-                                LocationCard(image: "location", headerText: "Location", location: character.location.name)
+                                LocationCard(image: "location", headerText: "Location", location: vm.character.location.name)
+                                    .task {
+                                        await vm.fetchRelatedLocation()
+                                    }
                             }
                         } else {
-                            LocationCard(image: "location", headerText: "Location", location: character.location.name)
+                            LocationCard(image: "location", headerText: "Location", location: vm.character.location.name)
+                                .task {
+                                    await vm.fetchRelatedLocation()
+                                }
                         }
                     }
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 20)
                 
-                if !vm.isLoading {
+                if vm.isLoading {
+                    ProgressView()
+                        .padding()
+                } else {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(vm.episodes) { episode in
                             NavigationLink {
@@ -100,19 +104,16 @@ struct CharacterDetail: View {
                         }
                     }
                     .padding(.horizontal, 20)
-                } else {
-                    
-                    ProgressView()
-                        .padding()
-                    
                 }
-                
             }
             .padding(.bottom, 20)
+            .task {
+                await vm.loadData()
+            }
         }
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
-        .navigationTitle(vm.showTitle ? character.name : "")
+        .navigationTitle(vm.showTitle ? vm.character.name : "")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -127,5 +128,5 @@ struct CharacterDetail: View {
 }
 
 #Preview {
-    CharacterDetail(character: RMCharacter.dummyCharacterDead)
+    CharacterDetail(character: RMCharacter.dummy)
 }

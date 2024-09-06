@@ -10,22 +10,28 @@ import Foundation
 @Observable
 class CharactersVM {
     
-    private(set) var characters = [RMCharacter]()
-    private let repository = RMCharacterRepository()
-    var isLoading = false
-    private var page = 0
+    private(set) var characters: [RMCharacter] = []
+    private var apiInfo: APIInfo? = nil
     
-    init() {
-        loadCharacters()
+    var isLoading = false
+        
+    private let repository = RMRepository()
+    
+    func loadData() async {
+        isLoading = true
+        (apiInfo, characters) = await repository.fetchCharacters(request: .listCharactersRequest)
+        isLoading = false
     }
     
-    func loadCharacters() {
+    func loadMoreData() async {
         isLoading = true
-        page += 1
-        Task {
-            let characters = await repository.getAllCharacters(page: page)
-            self.characters.append(contentsOf: characters)
+        guard let next = apiInfo?.next, let url = URL(string: next), let request = RMRequest(url: url) else {
             isLoading = false
+            return
         }
+        let (newApiInfo, newCharacters) = await repository.fetchCharacters(request: request)
+        apiInfo = newApiInfo
+        characters.append(contentsOf: newCharacters)
+        isLoading = false
     }
 }

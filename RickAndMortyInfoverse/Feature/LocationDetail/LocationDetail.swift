@@ -15,45 +15,46 @@ struct LocationDetail: View {
     
     @State var vm: LocationDetailVM
     
-    private var location: RMLocation {
-        vm.location!
-    }
-    
-    init(id: Int) {
-        vm = LocationDetailVM(id: id)
+    init(location: RMLocation) {
+        vm = LocationDetailVM(location: location)
     }
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                CustomListItem(title: "Location Name", name: location.name)
-                CustomListItem(title: "Type", name: location.type)
-                CustomListItem(title: "Dimension", name: location.dimension)
+                CustomListItem(title: "Location Name", name: vm.location.name)
+                CustomListItem(title: "Type", name: vm.location.type)
+                CustomListItem(title: "Dimension", name: vm.location.dimension)
                 
-                Text("Residents")
-                    .font(.title)
-                    .fontWeight(.bold)
-                
-                if !vm.isLoading {
-                    LazyVGrid(columns: columns) {
-                        ForEach(vm.characters) { character in
-                            NavigationLink {
-                                CharacterDetail(character: character)
-                            } label: {
-                                RMCharacterCard(character: character)
-                            }
-                        }
-                        
-                    }
-                } else {
+                if vm.isLoading {
                     ProgressView()
                         .padding()
+                } else {
+                    VStack(spacing: 10) {
+                        Text(vm.characters.isEmpty ? "No Residents" : "Residents")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        
+                        LazyVGrid(columns: columns) {
+                            ForEach(vm.characters) { character in
+                                NavigationLink {
+                                    CharacterDetail(character: character)
+                                } label: {
+                                    RMCharacterCard(character: character)
+                                }
+                            }
+                            
+                        }
+                    }
                 }
             }
             .padding(.horizontal)
+            .task {
+                await vm.loadData()
+            }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationTitle(location.name)
+        .navigationTitle(vm.location.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -65,9 +66,9 @@ struct LocationDetail: View {
             }
         }
     }
-
+    
 }
 
 #Preview {
-    LocationDetail(id: 1)
+    LocationDetail(location: RMLocation.dummy)
 }

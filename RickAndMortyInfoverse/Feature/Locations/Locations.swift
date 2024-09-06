@@ -10,43 +10,60 @@ import SwiftUI
 
 struct Locations: View {
     
+    @Binding var isTabBarHidden: Bool
+    
     @State private var vm = LocationsVM()
+    @State private var lastOffset: CGFloat = 0
     
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(vm.dataTuple, id: \.location.id) { locationData in
+                ForEach(vm.locations) { location in
                     NavigationLink{
-                        LocationDetail(id: locationData.location.id)
+                        LocationDetail(location: location)
                     } label: {
-                        LocationRow(location: locationData.location, residents: locationData.residents)
+                        LocationRow(location: location)
                     }
-                    .onAppear {
-                        if locationData.location.id == vm.dataTuple.last?.location.id {
-                            vm.loadLocations()
+                    .task {
+                        if location == vm.locations.last {
+                            await vm.loadMoreData()
                         }
                     }
                 }
                 
-                if vm.isLoading {
-                    ProgressView()
-                        .padding()
-                }
             }
             .padding(.horizontal)
+            .task {
+                await vm.loadData()
+            }
+            .measure { newOffset in
+                withAnimation(.easeOut.speed(1.5)){
+                    if newOffset > lastOffset || newOffset > 0 {
+                        isTabBarHidden = false
+                    } else if newOffset < lastOffset {
+                        isTabBarHidden = true
+                    }
+                }
+                lastOffset = newOffset
+            }
+            
+            if vm.isLoading {
+                ProgressView()
+                    .padding()
+            }
         }
         .navigationTitle("Locations")
         
     }
+    
 }
 
 #Preview {
-    Locations()
+    Locations(isTabBarHidden: .constant(false))
 }
 
 struct LocationRow: View {
     let location: RMLocation
-    let residents: [URL]
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -57,36 +74,15 @@ struct LocationRow: View {
                 .opacity(0.8)
             
             
-            HStack( spacing: 40) {
-                VStack(alignment: .leading) {
-                    Text(location.name)
-                        .font(.body)
-                        .fontWeight(.bold)
-                    
-                    Text(location.type)
-                        .font(.headline)
-                }
-                .foregroundStyle(.white)
+            VStack(alignment: .leading) {
+                Text(location.name)
+                    .font(.body)
+                    .fontWeight(.bold)
                 
-                if !residents.isEmpty {
-                    ZStack(alignment: .leading) {
-                        ForEach(Array(residents.prefix(7).enumerated()), id: \.element) { index, character in
-                            
-                            KFImage(character)
-                                .placeholder {
-                                    ProgressView()
-                                }
-                                .resizable()
-                                .loadDiskFileSynchronously()
-                                .mask(Circle())
-                                .frame(width: 40, height: 40)
-                                .offset(x: CGFloat(index * 20))
-                        }
-                    }
-                } else {
-                    /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
-                }
+                Text(location.type)
+                    .font(.headline)
             }
+            .foregroundStyle(.white)
             .padding(.horizontal)
         }
         .clipShape(RoundedRectangle(cornerRadius: 20))

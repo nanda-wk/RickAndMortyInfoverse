@@ -58,7 +58,7 @@ struct CustomTabBar: View {
 
 enum Tab: String, CaseIterable {
     case character = "person.2"
-    case location = "globe.central.south.asia"
+    case location = "globe"
     case episode = "play.tv"
 }
 

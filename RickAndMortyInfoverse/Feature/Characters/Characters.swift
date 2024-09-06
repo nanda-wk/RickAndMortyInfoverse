@@ -18,28 +18,25 @@ struct Characters: View {
     
     var body: some View {
         ScrollView {
-            if vm.isLoading {
-                ProgressView()
-                    .padding()
-            }
-            
             LazyVGrid(columns: columns) {
-                
-                ForEach(vm.characters) { character in
+                ForEach(vm.characters, id: \.id) { character in
                     NavigationLink {
                         CharacterDetail(character: character)
                     } label: {
                         RMCharacterCard(character: character)
                     }
-                    .onAppear {
-                        if character.id == vm.characters.last?.id {
-                            vm.loadCharacters()
+                    .task {
+                        if character == vm.characters.last {
+                            await vm.loadMoreData()
                         }
                     }
                 }
                 
             }
             .padding()
+            .task {
+                await vm.loadData()
+            }
             .measure { newOffset in
                 withAnimation(.easeOut.speed(1.5)){
                     if newOffset > lastOffset || newOffset > 0 {
@@ -49,6 +46,11 @@ struct Characters: View {
                     }
                 }
                 lastOffset = newOffset
+            }
+            
+            if vm.isLoading {
+                ProgressView()
+                    .padding()
             }
         }
         .navigationTitle("Characters")
