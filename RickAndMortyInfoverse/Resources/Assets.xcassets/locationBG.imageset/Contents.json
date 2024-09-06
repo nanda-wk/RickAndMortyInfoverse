@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "location.png",
+      "filename" : "LocationBG.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "location 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "location 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
