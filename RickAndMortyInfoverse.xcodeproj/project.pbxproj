@@ -65,6 +65,7 @@
 		16EF8E282C85B4DC00978AE9 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF8E272C85B4DC00978AE9 /* CustomTabBar.swift */; };
 		16EF8E2B2C85BE8D00978AE9 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF8E2A2C85BE8D00978AE9 /* Locations.swift */; };
 		16EF8E2D2C85BE9E00978AE9 /* Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF8E2C2C85BE9E00978AE9 /* Episodes.swift */; };
+		16F7F8562C89934C004988AE /* LocationsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7F8552C89934C004988AE /* LocationsVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,7 @@
 		16EF8E272C85B4DC00978AE9 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		16EF8E2A2C85BE8D00978AE9 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		16EF8E2C2C85BE9E00978AE9 /* Episodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episodes.swift; sourceTree = "<group>"; };
+		16F7F8552C89934C004988AE /* LocationsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -532,6 +534,7 @@
 			isa = PBXGroup;
 			children = (
 				16EF8E2A2C85BE8D00978AE9 /* Locations.swift */,
+				16F7F8552C89934C004988AE /* LocationsVM.swift */,
 			);
 			path = Locations;
 			sourceTree = "<group>";
@@ -721,6 +724,7 @@
 				161DB5352C6BC6E300F965BF /* CharacterDetail.swift in Sources */,
 				16ABDE992C872CD800B20C97 /* LocationDetail.swift in Sources */,
 				16B9C8C82C687D880074A356 /* RMCharacterResponse.swift in Sources */,
+				16F7F8562C89934C004988AE /* LocationsVM.swift in Sources */,
 				16BBD6B52C69FD96004FB639 /* RMEndpoint.swift in Sources */,
 				16B9C80B2C679DDF0074A356 /* Network.swift in Sources */,
 				1669579F2C73113E00CFDD75 /* CustomCapsule.swift in Sources */,
