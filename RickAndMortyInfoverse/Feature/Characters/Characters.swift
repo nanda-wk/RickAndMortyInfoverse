@@ -18,7 +18,7 @@ struct Characters: View {
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns) {
+            LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(vm.characters, id: \.id) { character in
                     NavigationLink {
                         CharacterDetail(character: character)

@@ -1,26 +1,26 @@
 //
-//  LocationsVM.swift
+//  EpisodesVM.swift
 //  RickAndMortyInfoverse
 //
-//  Created by Nanda WK on 2024-09-05.
+//  Created by Nanda WK on 2024-09-07.
 //
 
 import Foundation
 
 @Observable
-class LocationsVM {
+class EpisodesVM {
     
-    private(set) var locations: [RMLocation] = []
+    private(set) var episodes: [RMEpisode] = []
     private var apiInfo: APIInfo? = nil
     
     var isLoading = false
-    
+        
     private let repository = RMRepository()
     
     func loadData() async {
         if apiInfo != nil { return }
         isLoading = true
-        (apiInfo, locations) = await repository.fetchLocations(request: .listLocationsRequest)
+        (apiInfo, episodes) = await repository.fetchEpisodes(request: .listEpisodesRequest)
         isLoading = false
     }
     
@@ -30,10 +30,9 @@ class LocationsVM {
             isLoading = false
             return
         }
-        let (newApiInfo, newLocations) = await repository.fetchLocations(request: request)
+        let (newApiInfo, newCharacters) = await repository.fetchEpisodes(request: request)
         apiInfo = newApiInfo
-        locations.append(contentsOf: newLocations)
+        episodes.append(contentsOf: newCharacters)
         isLoading = false
     }
 }
-

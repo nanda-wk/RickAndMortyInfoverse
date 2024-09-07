@@ -58,6 +58,7 @@
 		16F7F8782C8B3957004988AE /* RMLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7F8772C8B3957004988AE /* RMLocation.swift */; };
 		16F7F87A2C8B399F004988AE /* RMEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7F8792C8B399F004988AE /* RMEpisode.swift */; };
 		16F7F87D2C8B3BFA004988AE /* RMRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7F87C2C8B3BFA004988AE /* RMRepository.swift */; };
+		16F7F8812C8C5738004988AE /* EpisodesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7F8802C8C5738004988AE /* EpisodesVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,7 @@
 		16F7F8772C8B3957004988AE /* RMLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocation.swift; sourceTree = "<group>"; };
 		16F7F8792C8B399F004988AE /* RMEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEpisode.swift; sourceTree = "<group>"; };
 		16F7F87C2C8B3BFA004988AE /* RMRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMRepository.swift; sourceTree = "<group>"; };
+		16F7F8802C8C5738004988AE /* EpisodesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,7 +177,6 @@
 			children = (
 				1669579C2C73110300CFDD75 /* LocationCard.swift */,
 				1669579E2C73113E00CFDD75 /* CustomCapsule.swift */,
-				16EF8E1B2C831EFC00978AE9 /* EpisodeCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +186,7 @@
 			children = (
 				166957A12C73119500CFDD75 /* BackButton.swift */,
 				16ABDE902C872C4E00B20C97 /* CustomListItem.swift */,
+				16EF8E1B2C831EFC00978AE9 /* EpisodeCardView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -362,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				16EF8E2C2C85BE9E00978AE9 /* Episodes.swift */,
+				16F7F8802C8C5738004988AE /* EpisodesVM.swift */,
 			);
 			path = Episodes;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				16B9C8AE2C67DD710074A356 /* CustomFont.swift in Sources */,
 				16EF8E2B2C85BE8D00978AE9 /* Locations.swift in Sources */,
 				16F7F86A2C8B36B3004988AE /* RMLocationResponse.swift in Sources */,
+				16F7F8812C8C5738004988AE /* EpisodesVM.swift in Sources */,
 				161DB5352C6BC6E300F965BF /* CharacterDetail.swift in Sources */,
 				16ABDE992C872CD800B20C97 /* LocationDetail.swift in Sources */,
 				16F7F8642C8B2D05004988AE /* RMEndpoint.swift in Sources */,
@@ -807,6 +811,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -816,10 +821,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -841,6 +847,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -850,10 +857,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

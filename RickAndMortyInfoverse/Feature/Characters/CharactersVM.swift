@@ -18,6 +18,7 @@ class CharactersVM {
     private let repository = RMRepository()
     
     func loadData() async {
+        if apiInfo != nil { return }
         isLoading = true
         (apiInfo, characters) = await repository.fetchCharacters(request: .listCharactersRequest)
         isLoading = false

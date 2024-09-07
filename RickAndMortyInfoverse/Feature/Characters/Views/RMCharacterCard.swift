@@ -43,10 +43,12 @@ struct RMCharacterCard: View {
                     
                     Text(character.name)
                         .font(.subheadline)
+                        .foregroundStyle(Color.customBlack)
                         .lineLimit(2, reservesSpace: true)
                         .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                .padding(.bottom, 10)
             }
             .padding(.horizontal, 10)
         }

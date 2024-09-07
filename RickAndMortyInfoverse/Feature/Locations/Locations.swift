@@ -17,9 +17,9 @@ struct Locations: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack {
-                ForEach(vm.locations) { location in
-                    NavigationLink{
+            LazyVStack(spacing: 10) {
+                ForEach(vm.locations, id: \.id) { location in
+                    NavigationLink {
                         LocationDetail(location: location)
                     } label: {
                         LocationRow(location: location)
@@ -71,7 +71,6 @@ struct LocationRow: View {
                 .resizable()
                 .scaledToFill()
                 .frame(height: 120)
-                .opacity(0.8)
             
             
             VStack(alignment: .leading) {
@@ -79,10 +78,23 @@ struct LocationRow: View {
                     .font(.body)
                     .fontWeight(.bold)
                 
-                Text(location.type)
+                HStack {
+                    if !location.type.isEmpty {
+                        Text(location.type)
+                    }
+                    
+                    if !location.type.isEmpty, !location.dimension.isEmpty {
+                        Text("•")
+                            .font(.title)
+                            .foregroundStyle(Color.customPrimary)
+                    }
+                    
+                    Text(location.dimension)
+                }
                     .font(.headline)
             }
             .foregroundStyle(.white)
+            .multilineTextAlignment(.leading)
             .padding(.horizontal)
         }
         .clipShape(RoundedRectangle(cornerRadius: 20))

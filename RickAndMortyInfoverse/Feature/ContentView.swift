@@ -21,7 +21,7 @@ struct ContentView: View {
                     case .location:
                         Locations(isTabBarHidden: $isTabBarHidden)
                     case .episode:
-                        Episodes()
+                        Episodes(isTabBarHidden: $isTabBarHidden)
                 }
                 
                 if !isTabBarHidden {

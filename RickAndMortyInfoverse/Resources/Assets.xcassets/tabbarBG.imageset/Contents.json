@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "S2e9_purge_planet.jpg",
+      "filename" : "tabbarBG.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "S2e9_purge_planet 1.jpg",
+      "filename" : "tabbarBG 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "S2e9_purge_planet 2.jpg",
+      "filename" : "tabbarBG 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

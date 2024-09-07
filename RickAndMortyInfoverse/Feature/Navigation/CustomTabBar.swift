@@ -44,7 +44,11 @@ struct CustomTabBar: View {
         }
         .frame(maxWidth: .infinity)
         .padding(12)
-        .background(Color.customGray)
+        .background(
+            Image(.tabbarBG)
+                .resizable()
+                .scaledToFill()
+        )
         .mask(RoundedRectangle(cornerRadius: 26, style: .continuous))
         .shadow(color: Color.customPrimary.opacity(0.3), radius: 20, x: 0, y: 20)
         .overlay(
