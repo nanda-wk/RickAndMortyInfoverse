@@ -54,9 +54,21 @@ struct Characters: View {
             }
         }
         .navigationTitle("Characters")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    SearchCharacter()
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                }
+                .foregroundStyle(Color.customPrimary)
+            }
+        }
     }
 }
 
 #Preview {
-    Characters(isTabBarHidden: .constant(false))
+    NavigationStack {
+        Characters(isTabBarHidden: .constant(false))
+    }
 }

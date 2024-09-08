@@ -10,17 +10,30 @@ import Foundation
 @Observable
 class EpisodesVM {
     
-    private(set) var episodes: [RMEpisode] = []
-    private var apiInfo: APIInfo? = nil
+    var episodes: [RMEpisode] = []
+    var searchName: String = "" {
+        didSet {
+            Task {
+                await loadData()
+            }
+        }
+    }
     
     var isLoading = false
         
     private let repository = RMRepository()
+    private var apiInfo: APIInfo? = nil
     
     func loadData() async {
-        if apiInfo != nil { return }
         isLoading = true
-        (apiInfo, episodes) = await repository.fetchEpisodes(request: .listEpisodesRequest)
+        var queryParameters = RMSearch(name: searchName).toQueryItems()
+        var request = RMRequest(endpoint: .episode, queryParameters: queryParameters)
+        (apiInfo, episodes) = await repository.fetchEpisodes(request: request)
+        if episodes.isEmpty {
+            queryParameters = RMSearch(episode: searchName).toQueryItems()
+            request = RMRequest(endpoint: .episode, queryParameters: queryParameters)
+            (apiInfo, episodes) = await repository.fetchEpisodes(request: request)
+        }
         isLoading = false
     }
     

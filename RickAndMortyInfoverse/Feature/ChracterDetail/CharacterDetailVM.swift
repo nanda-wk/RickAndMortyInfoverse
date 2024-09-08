@@ -10,10 +10,10 @@ import Foundation
 @Observable
 class CharacterDetailVM {
 
-    private(set) var character: RMCharacter
-    private(set) var episodes: [RMEpisode] = []
-    private(set) var origin: RMLocation?
-    private(set) var location: RMLocation?
+    var character: RMCharacter
+    var episodes: [RMEpisode] = []
+    var origin: RMLocation?
+    var location: RMLocation?
     
     var isLoading = false
     var showTitle = false

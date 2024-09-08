@@ -56,7 +56,7 @@ struct EpisodeDetail: View {
         .navigationTitle(vm.episode.episode)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
+            ToolbarItem(placement: .topBarLeading) {
                 Button {
                     dismiss()
                 } label: {

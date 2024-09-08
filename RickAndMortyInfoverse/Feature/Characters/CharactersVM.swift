@@ -10,12 +10,12 @@ import Foundation
 @Observable
 class CharactersVM {
     
-    private(set) var characters: [RMCharacter] = []
-    private var apiInfo: APIInfo? = nil
+    var characters: [RMCharacter] = []
     
     var isLoading = false
         
     private let repository = RMRepository()
+    private var apiInfo: APIInfo? = nil
     
     func loadData() async {
         if apiInfo != nil { return }

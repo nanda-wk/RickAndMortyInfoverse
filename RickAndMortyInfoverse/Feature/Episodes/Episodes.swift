@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Episodes: View {
+    
     @Binding var isTabBarHidden: Bool
     
     @State private var vm = EpisodesVM()
@@ -52,6 +53,7 @@ struct Episodes: View {
             }
         }
         .navigationTitle("Episodes")
+        .searchable(text: $vm.searchName, prompt: "Episode Name")
     }
 }
 

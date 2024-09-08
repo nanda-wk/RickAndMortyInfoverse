@@ -10,17 +10,25 @@ import Foundation
 @Observable
 class LocationsVM {
     
-    private(set) var locations: [RMLocation] = []
-    private var apiInfo: APIInfo? = nil
+    var locations: [RMLocation] = []
+    var searchName: String = "" {
+        didSet {
+            Task {
+                await loadData()
+            }
+        }
+    }
     
     var isLoading = false
     
     private let repository = RMRepository()
+    private var apiInfo: APIInfo? = nil
     
     func loadData() async {
-        if apiInfo != nil { return }
         isLoading = true
-        (apiInfo, locations) = await repository.fetchLocations(request: .listLocationsRequest)
+        let queryParameters = RMSearch(name: searchName).toQueryItems()
+        let request = RMRequest(endpoint: .location, queryParameters: queryParameters)
+        (apiInfo, locations) = await repository.fetchLocations(request: request)
         isLoading = false
     }
     

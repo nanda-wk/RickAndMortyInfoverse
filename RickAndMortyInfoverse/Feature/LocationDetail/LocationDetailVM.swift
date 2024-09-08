@@ -10,8 +10,8 @@ import Foundation
 @Observable
 class LocationDetailVM {
         
-    private(set) var location: RMLocation
-    private(set) var characters: [RMCharacter] = []
+    var location: RMLocation
+    var characters: [RMCharacter] = []
     
     var isLoading = false
     

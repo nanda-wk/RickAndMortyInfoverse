@@ -10,8 +10,8 @@ import Foundation
 @Observable
 class EpisodeDetailVM {
     
-    private(set) var episode: RMEpisode
-    private(set) var characters: [RMCharacter] = []
+    var episode: RMEpisode
+    var characters: [RMCharacter] = []
     
     var isLoading = false
     
@@ -29,7 +29,7 @@ class EpisodeDetailVM {
         }
         let result = await repository.fetchEpisodeDetail(request: request)
         guard let result = result else { return }
-        episode = episode
+        episode = result
         await fetchRelatedCharacters()
         isLoading = false
     }
