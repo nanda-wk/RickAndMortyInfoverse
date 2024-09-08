@@ -26,15 +26,15 @@ struct LocationDetail: View {
                 CustomListItem(title: "Type", name: vm.location.type)
                 CustomListItem(title: "Dimension", name: vm.location.dimension)
                 
-                if vm.isLoading {
-                    ProgressView()
-                        .padding()
-                } else {
-                    VStack(spacing: 10) {
-                        Text(vm.characters.isEmpty ? "No Residents" : "Residents")
-                            .font(.title)
-                            .fontWeight(.bold)
-                        
+                
+                VStack(spacing: 10) {
+                    Text(vm.characters.isEmpty && !vm.isLoading ? "No Residents" : "Residents")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    if vm.isLoading {
+                        ProgressView()
+                            .padding()
+                    } else {
                         LazyVGrid(columns: columns) {
                             ForEach(vm.characters) { character in
                                 NavigationLink {
@@ -57,7 +57,7 @@ struct LocationDetail: View {
         .navigationTitle(vm.location.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
+            ToolbarItem(placement: .topBarLeading) {
                 Button {
                     dismiss()
                 } label: {

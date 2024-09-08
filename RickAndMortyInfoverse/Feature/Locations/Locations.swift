@@ -46,6 +46,7 @@ struct Locations: View {
                 }
                 lastOffset = newOffset
             }
+            .searchable(text: $vm.searchName, prompt: "Location Name")
             
             if vm.isLoading {
                 ProgressView()
@@ -53,13 +54,14 @@ struct Locations: View {
             }
         }
         .navigationTitle("Locations")
-        
     }
     
 }
 
 #Preview {
-    Locations(isTabBarHidden: .constant(false))
+    NavigationStack {
+        Locations(isTabBarHidden: .constant(false))
+    }
 }
 
 struct LocationRow: View {

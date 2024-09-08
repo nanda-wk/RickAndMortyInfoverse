@@ -21,7 +21,7 @@ struct CharacterDetail: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack {
                 KFImage(URL(string: vm.character.image))
                     .placeholder {
                         Color.customGray.opacity(0.2)
@@ -116,7 +116,7 @@ struct CharacterDetail: View {
         .navigationTitle(vm.showTitle ? vm.character.name : "")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
+            ToolbarItem(placement: .topBarLeading) {
                 Button {
                     dismiss()
                 } label: {
