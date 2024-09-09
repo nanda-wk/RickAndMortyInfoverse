@@ -15,7 +15,7 @@ struct RMLocation: Codable, Equatable, Identifiable {
     let residents: [String]
     let url: String
     let created: String
-    
+
     static func == (lhs: RMLocation, rhs: RMLocation) -> Bool {
         lhs.id == rhs.id
     }
@@ -54,7 +54,7 @@ extension RMLocation {
             "https://rickandmortyapi.com/api/character/338",
             "https://rickandmortyapi.com/api/character/343",
             "https://rickandmortyapi.com/api/character/356",
-            "https://rickandmortyapi.com/api/character/394"
+            "https://rickandmortyapi.com/api/character/394",
         ],
         url: "https://rickandmortyapi.com/api/location/1",
         created: "2017-11-10T12:42:04.162Z"

@@ -37,7 +37,7 @@ extension RMCharacter {
         origin: Origin(name: "Earth (C-137)", url: "https://rickandmortyapi.com/api/location/1"),
         location: Location(name: "Citadel of Ricks", url: "https://rickandmortyapi.com/api/location/3"),
         image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-        episode:  [
+        episode: [
             "https://rickandmortyapi.com/api/episode/1",
             "https://rickandmortyapi.com/api/episode/2",
             "https://rickandmortyapi.com/api/episode/3",
@@ -88,7 +88,7 @@ extension RMCharacter {
             "https://rickandmortyapi.com/api/episode/48",
             "https://rickandmortyapi.com/api/episode/49",
             "https://rickandmortyapi.com/api/episode/50",
-            "https://rickandmortyapi.com/api/episode/51"
+            "https://rickandmortyapi.com/api/episode/51",
         ],
         url: "https://rickandmortyapi.com/api/character/1",
         created: "2017-11-04T18:48:46.250Z"

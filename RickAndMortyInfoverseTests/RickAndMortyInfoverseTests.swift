@@ -5,10 +5,7 @@
 //  Created by Nanda WK on 2024-08-10.
 //
 
-import XCTest
 @testable import RickAndMortyInfoverse
+import XCTest
 
-final class RickAndMortyInfoverseTests: XCTestCase {
-
-
-}
+final class RickAndMortyInfoverseTests: XCTestCase {}

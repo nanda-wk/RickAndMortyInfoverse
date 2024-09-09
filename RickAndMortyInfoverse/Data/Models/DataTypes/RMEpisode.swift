@@ -15,7 +15,7 @@ struct RMEpisode: Codable, Equatable, Identifiable {
     let characters: [String]
     let url: String
     let created: String
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -52,7 +52,7 @@ extension RMEpisode {
             "https://rickandmortyapi.com/api/character/338",
             "https://rickandmortyapi.com/api/character/394",
             "https://rickandmortyapi.com/api/character/395",
-            "https://rickandmortyapi.com/api/character/435"
+            "https://rickandmortyapi.com/api/character/435",
         ],
         url: "https://rickandmortyapi.com/api/episode/1",
         created: "2017-11-10T12:56:33.798Z"

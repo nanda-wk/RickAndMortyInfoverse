@@ -9,7 +9,6 @@ import Foundation
 
 @Observable
 class LocationsVM {
-    
     var locations: [RMLocation] = []
     var searchName: String = "" {
         didSet {
@@ -18,12 +17,12 @@ class LocationsVM {
             }
         }
     }
-    
+
     var isLoading = false
-    
+
     private let repository = RMRepository()
-    private var apiInfo: APIInfo? = nil
-    
+    private var apiInfo: APIInfo?
+
     func loadData() async {
         isLoading = true
         let queryParameters = RMSearch(name: searchName).toQueryItems()
@@ -31,7 +30,7 @@ class LocationsVM {
         (apiInfo, locations) = await repository.fetchLocations(request: request)
         isLoading = false
     }
-    
+
     func loadMoreData() async {
         isLoading = true
         guard let next = apiInfo?.next, let url = URL(string: next), let request = RMRequest(url: url) else {
@@ -44,4 +43,3 @@ class LocationsVM {
         isLoading = false
     }
 }
-

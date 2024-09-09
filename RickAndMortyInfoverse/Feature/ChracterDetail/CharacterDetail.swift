@@ -9,16 +9,15 @@ import Kingfisher
 import SwiftUI
 
 struct CharacterDetail: View {
-    
     @Environment(\.dismiss) var dismiss
     @State var vm: CharacterDetailVM
-    
+
     private let columns = [GridItem(.flexible(), spacing: 20), GridItem(.flexible(), spacing: 20)]
-    
+
     init(character: RMCharacter) {
         vm = CharacterDetailVM(character: character)
     }
-    
+
     var body: some View {
         ScrollView {
             VStack {
@@ -29,7 +28,7 @@ struct CharacterDetail: View {
                     .loadDiskFileSynchronously()
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                
+
                 VStack {
                     Text(vm.character.name)
                         .font(.title)
@@ -39,20 +38,20 @@ struct CharacterDetail: View {
                                 vm.showTitle = value < 0
                             }
                         }
-                    
+
                     HStack(spacing: 20) {
                         CustomCapsule(image: vm.character.status.rawValue, text: vm.character.status.rawValue, color: .statusColor(vm.character.status), title: "Status")
-                        
+
                         CustomCapsule(image: vm.character.gender.rawValue, text: vm.character.gender.rawValue, color: .genderColor(vm.character.gender), title: "Gender")
                     }
-                    
+
                     HStack(spacing: 20) {
                         CustomCapsule(image: "type", text: vm.character.type.isEmpty ? "unknown" : vm.character.type, color: .customPurple, title: "Type")
-                        
+
                         CustomCapsule(image: "species", text: vm.character.species, color: .customBlue, title: "Species")
                     }
                     .padding(.bottom, 40)
-                    
+
                     HStack(spacing: 20) {
                         if !vm.character.origin.url.isEmpty, let origin = vm.origin {
                             NavigationLink {
@@ -69,7 +68,7 @@ struct CharacterDetail: View {
                                     await vm.fetchRelatedOrigin()
                                 }
                         }
-                        
+
                         if !vm.character.location.url.isEmpty, let location = vm.location {
                             NavigationLink {
                                 LocationDetail(location: location)
@@ -89,7 +88,7 @@ struct CharacterDetail: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 20)
-                
+
                 if vm.isLoading {
                     ProgressView()
                         .padding()

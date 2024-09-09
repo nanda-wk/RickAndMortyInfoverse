@@ -11,7 +11,7 @@ struct APIInfo: Codable {
     let count, pages: Int
     let next: String?
     let prev: String?
-    
+
     init(count: Int = 0, pages: Int = 0, next: String? = nil, prev: String? = nil) {
         self.count = count
         self.pages = pages

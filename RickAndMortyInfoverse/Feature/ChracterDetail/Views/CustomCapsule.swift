@@ -9,14 +9,13 @@ import Foundation
 import SwiftUI
 
 struct CustomCapsule: View {
-    
     let image: String
     let text: String
     let color: Color
     let title: String
-    
+
     private let customShape = RoundedCorner(radius: 20, corners: [.bottomLeft, .bottomRight])
-    
+
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: 8) {
@@ -29,7 +28,7 @@ struct CustomCapsule: View {
             }
             .padding(.horizontal, 10)
             .padding(.top, 10)
-            
+
             Text(title.uppercased())
                 .font(.title3)
                 .fontWeight(.bold)
@@ -37,7 +36,6 @@ struct CustomCapsule: View {
                 .frame(maxWidth: .infinity)
                 .background(Color.customGray.opacity(0.05))
                 .clipShape(customShape)
-            
         }
         .frame(maxWidth: .infinity)
         .overlay(

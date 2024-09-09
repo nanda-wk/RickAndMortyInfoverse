@@ -9,20 +9,20 @@ import Kingfisher
 import SwiftUI
 
 struct RMCharacterCard: View {
-    
     let character: RMCharacter
-    
+
     private var status: RMCharacterStatus {
         character.status
     }
+
     private var gender: RMCharacterGender {
         character.gender
     }
-    
+
     private var url: URL {
         URL(string: character.image)!
     }
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             KFImage(url)
@@ -32,15 +32,14 @@ struct RMCharacterCard: View {
                 .loadDiskFileSynchronously()
                 .resizable()
                 .scaledToFit()
-            
+
             VStack {
                 HStack(alignment: .top) {
-                    
                     Image(character.status.rawValue)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)
-                    
+
                     Text(character.name)
                         .font(.subheadline)
                         .foregroundStyle(Color.customBlack)
@@ -59,7 +58,6 @@ struct RMCharacterCard: View {
         )
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: .statusColor(character.status).opacity(0.2), radius: 4)
-        
     }
 }
 

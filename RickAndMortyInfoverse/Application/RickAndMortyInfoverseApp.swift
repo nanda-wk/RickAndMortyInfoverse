@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
-import SwiftData
 
 @main
 struct RickAndMortyInfoverseApp: App {
-
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.light)
         }
     }
 }

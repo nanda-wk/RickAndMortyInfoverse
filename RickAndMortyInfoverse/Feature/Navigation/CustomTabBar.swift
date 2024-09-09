@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct CustomTabBar: View {
-    
     @Binding var selectedTab: Tab
     @State private var bounceTrigger: Tab?
-    
+
     var body: some View {
         HStack {
             ForEach(Tab.allCases, id: \.self) { tab in
@@ -20,7 +19,7 @@ struct CustomTabBar: View {
                         selectedTab = tab
                         bounceTrigger = tab
                     }
-                    
+
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         bounceTrigger = nil
                     }
@@ -56,7 +55,6 @@ struct CustomTabBar: View {
                 .stroke(.linearGradient(colors: [.white.opacity(0.5), .white.opacity(0)], startPoint: .topLeading, endPoint: .bottomTrailing))
         )
         .padding(.horizontal, 24)
-        
     }
 }
 

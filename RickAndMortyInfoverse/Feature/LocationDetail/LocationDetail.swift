@@ -8,25 +8,23 @@
 import SwiftUI
 
 struct LocationDetail: View {
-    
     @Environment(\.dismiss) var dismiss
-    
+
     let columns = [GridItem(.flexible(), spacing: 16), GridItem(.flexible())]
-    
+
     @State var vm: LocationDetailVM
-    
+
     init(location: RMLocation) {
         vm = LocationDetailVM(location: location)
     }
-    
+
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
                 CustomListItem(title: "Location Name", name: vm.location.name)
                 CustomListItem(title: "Type", name: vm.location.type)
                 CustomListItem(title: "Dimension", name: vm.location.dimension)
-                
-                
+
                 VStack(spacing: 10) {
                     Text(vm.characters.isEmpty && !vm.isLoading ? "No Residents" : "Residents")
                         .font(.title)
@@ -43,7 +41,6 @@ struct LocationDetail: View {
                                     RMCharacterCard(character: character)
                                 }
                             }
-                            
                         }
                     }
                 }
@@ -66,7 +63,6 @@ struct LocationDetail: View {
             }
         }
     }
-    
 }
 
 #Preview {

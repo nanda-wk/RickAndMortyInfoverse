@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct SearchCharacter: View {
-    
     @Environment(\.dismiss) var dismiss
     @State private var vm = SearchCharacterVM()
-    
+
     private let columns = [GridItem(.flexible(), spacing: 16), GridItem(.flexible())]
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -27,7 +26,7 @@ struct SearchCharacter: View {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.customGray.opacity(0.5))
             )
-            
+
             Button {
                 vm.isSheetPresented.toggle()
             } label: {
@@ -37,7 +36,7 @@ struct SearchCharacter: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.customGray.opacity(0.1))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                    
+
                     Text(vm.genderTitle)
                         .padding(.vertical, 4)
                         .frame(maxWidth: .infinity)
@@ -48,7 +47,7 @@ struct SearchCharacter: View {
         }
         .padding(.horizontal)
         .padding(.top, 5)
-        
+
         ScrollView {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(vm.characters, id: \.id) { character in
@@ -63,10 +62,9 @@ struct SearchCharacter: View {
                         }
                     }
                 }
-                
             }
             .padding()
-            
+
             if vm.isLoading {
                 ProgressView()
                     .padding()
@@ -83,7 +81,7 @@ struct SearchCharacter: View {
                     BackButton()
                 }
             }
-            
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     Task {

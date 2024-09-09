@@ -9,30 +9,30 @@ import Foundation
 
 @Observable
 class SearchCharacterVM {
-    
     var characters: [RMCharacter] = []
-    
+
     var searchName: String = ""
     var statusTitle: String = "Status"
     var genderTitle: String = "Gender"
-    
-    var status : RMCharacterStatus = .alive {
+
+    var status: RMCharacterStatus = .alive {
         didSet {
             statusTitle = status.rawValue
         }
     }
-    var gender : RMCharacterGender = .male {
+
+    var gender: RMCharacterGender = .male {
         didSet {
             genderTitle = gender.rawValue
         }
     }
-    
+
     var isSheetPresented: Bool = false
     var isLoading = false
-    
+
     private let repository = RMRepository()
-    private var apiInfo: APIInfo? = nil
-    
+    private var apiInfo: APIInfo?
+
     func searchCharacter() async {
         isLoading = true
         characters.removeAll()
@@ -41,7 +41,7 @@ class SearchCharacterVM {
         (apiInfo, characters) = await repository.fetchCharacters(request: request)
         isLoading = false
     }
-    
+
     func loadMoreData() async {
         isLoading = true
         guard let next = apiInfo?.next, let url = URL(string: next), let request = RMRequest(url: url) else {
@@ -53,5 +53,4 @@ class SearchCharacterVM {
         characters.append(contentsOf: newCharacters)
         isLoading = false
     }
-    
 }

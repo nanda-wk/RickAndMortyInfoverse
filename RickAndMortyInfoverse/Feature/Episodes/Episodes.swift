@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct Episodes: View {
-    
     @Binding var isTabBarHidden: Bool
-    
+
     @State private var vm = EpisodesVM()
     @State private var lastOffset: CGFloat = 0
-    
+
     private let columns = [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)]
-    
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 16) {
@@ -37,7 +36,7 @@ struct Episodes: View {
                 await vm.loadData()
             }
             .measure { newOffset in
-                withAnimation(.easeOut.speed(1.5)){
+                withAnimation(.easeOut.speed(1.5)) {
                     if newOffset > lastOffset || newOffset > 0 {
                         isTabBarHidden = false
                     } else if newOffset < lastOffset {
@@ -46,7 +45,7 @@ struct Episodes: View {
                 }
                 lastOffset = newOffset
             }
-            
+
             if vm.isLoading {
                 ProgressView()
                     .padding()

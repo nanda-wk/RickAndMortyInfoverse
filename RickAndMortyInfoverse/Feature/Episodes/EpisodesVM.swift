@@ -9,7 +9,6 @@ import Foundation
 
 @Observable
 class EpisodesVM {
-    
     var episodes: [RMEpisode] = []
     var searchName: String = "" {
         didSet {
@@ -18,12 +17,12 @@ class EpisodesVM {
             }
         }
     }
-    
+
     var isLoading = false
-        
+
     private let repository = RMRepository()
-    private var apiInfo: APIInfo? = nil
-    
+    private var apiInfo: APIInfo?
+
     func loadData() async {
         isLoading = true
         var queryParameters = RMSearch(name: searchName).toQueryItems()
@@ -36,7 +35,7 @@ class EpisodesVM {
         }
         isLoading = false
     }
-    
+
     func loadMoreData() async {
         isLoading = true
         guard let next = apiInfo?.next, let url = URL(string: next), let request = RMRequest(url: url) else {

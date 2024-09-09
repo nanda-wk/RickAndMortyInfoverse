@@ -16,7 +16,7 @@ struct SizeKey: PreferenceKey {
 
 struct MeasureModifier: ViewModifier {
     let fn: (CGFloat) -> Void
-    
+
     func body(content: Content) -> some View {
         content
             .overlay {
