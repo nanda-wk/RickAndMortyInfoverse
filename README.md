@@ -29,19 +29,25 @@
 
 <img src="./images/launch.png" width="150" />
 
-<img src="./images/characters.png" width="150" />
-<img src="./images/character1.png" width="150" />
-<img src="./images/character2.png" width="150" />
-<img src="./images/character3.png" width="150" />
-<img src="./images/character4.png" width="150" />
+<div style="display: flex;">
+    <img src="./images/characters.png" width="150" />
+    <img src="./images/character1.png" width="150" />
+    <img src="./images/character2.png" width="150" />
+    <img src="./images/character3.png" width="150" />
+    <img src="./images/character4.png" width="150" />
+</div>
 
-<img src="./images/locations.png" width="150" />
-<img src="./images/location1.png" width="150" />
-<img src="./images/location2.png" width="150" />
+<div style="display: flex;">
+    <img src="./images/locations.png" width="150" />
+    <img src="./images/location1.png" width="150" />
+    <img src="./images/location2.png" width="150" />
+</div>
 
-<img src="./images/episodes.png" width="150" />
-<img src="./images/episode2.png" width="150" />
-<img src="./images/episode1.png" width="150" />
+<div style="display: flex;">
+   <img src="./images/episodes.png" width="150" />
+    <img src="./images/episode2.png" width="150" />
+    <img src="./images/episode1.png" width="150" /> 
+</div>
 
 # Installation
 
