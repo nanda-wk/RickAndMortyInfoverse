@@ -53,14 +53,14 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/RickAndMortyInfoverse.git
+   git clone https://github.com/nanda-wk/RickAndMortyInfoverse.git
 
 2. Open the project in Xcode.
     
 3. Install dependencies (Kingfisher is included via Swift Package Manager):
-   ```bash
+   ```
    File > Swift Packages > Resolve Package Versions
-
+   ```
 4. Build and run the project on your simulator or device.
 
 ## Third-Party Libraries
@@ -80,10 +80,6 @@ This app uses the open-source [Rick and Morty API](https://rickandmortyapi.com/d
 - **Dark Mode Support**: Adding dark mode compatibility.
 - **Favorites Feature**: Enable users to favorite characters, episodes, or locations.
 - **Enhanced Filtering**: Allow more complex filtering options for characters and episodes.
-  
-## Contributing
-
-Feel free to fork the repository and submit a pull request for any improvements or features you'd like to add.
 
 ## License
 
